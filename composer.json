@@ -1,0 +1,25 @@
+{
+    "name": "yurivecchi/gralhaobs",
+    "description": "OBS Extension for Twitch.tv",
+    "type": "project",
+    "license": "FREE",
+    "authors": [
+        {
+            "name": "Yuri Vecchi",
+            "email": "yurivecchi@gralha.dev"
+        }
+    ],
+    "require": {
+        "php": "7.4.*",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "GralhaObs\\": "src\\",
+            "Config\\": "config\\"
+        }
+    },
+    "scripts": {
+        "serve": "php -S 0.0.0.0:7000 index.php"
+    }
+}
