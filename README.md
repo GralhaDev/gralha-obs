@@ -2,12 +2,26 @@
 
 Plugin feito durante as lives
 
-Preencha suas credenciais na pasta config/ e depois rode os comandos
+Preencha suas credenciais na pasta config/ e depois rode o comando
 
+```
 composer install
+```
 
-composer serve
+Para os followers rode o comando
 
-Dentro do seu OBS, aponte sua extensão de browser para http://localhost:7000
+```
+composer followers
+```
+
+e dentro do seu OBS, aponte sua extensão de browser para http://localhost:7001
+
+Para os subscribers rode o comando
+
+```
+composer subscribers
+```
+
+e dentro do seu OBS, aponte sua extensão de browser para http://localhost:7002
 
 Enjoy!
