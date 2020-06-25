@@ -19,7 +19,11 @@
             "Config\\": "config\\"
         }
     },
+    "config": {
+        "process-timeout": 0
+    },
     "scripts": {
-        "serve": "php -S 0.0.0.0:7000 index.php"
+        "followers": "php -S 0.0.0.0:7001 followers.php",
+        "subscribers": "php -S 0.0.0.0:7002 subscribers.php"
     }
 }

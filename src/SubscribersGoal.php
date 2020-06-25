@@ -6,15 +6,15 @@ use Config\Credentials;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 
-class FollowersGoal
+class SubscribersGoal
 {
     public static function show($goal): void
     {
-        $current = self::getFollowers();
+        $current = self::getSubscribers();
         print(sprintf(
             self::template(),
-            $current->total / $goal * 100,
-            $current->total,
+            \count($current->data) / $goal * 100,
+            \count($current->data),
             $goal,
         ));
     }
@@ -25,7 +25,7 @@ class FollowersGoal
         return <<<TEMPLATE
             <div style="position: relative; background: white; border:2px solid #333; border-radius: 4px;">
                 <div style="background: #474A8A; width: %s%%; padding: 3px 0; border-radius: 1px;">&nbsp;</div>
-                <div style="font-family: sans-serif; position:absolute; top: 0; left: 0; padding: 3px;">Seguidores</div>
+                <div style="font-family: sans-serif; position:absolute; top: 0; left: 0; padding: 3px;">Subscribers</div>
                 <div style="font-family: sans-serif; position:absolute; top: 0; left: 50%%; padding: 3px 0; width: 6%%; margin-right: -3%%;">%s</div>
                 <div style="font-family: sans-serif; position:absolute; top: 0; right: 0; padding: 3px;">%s</div>
             </div>
@@ -33,7 +33,7 @@ class FollowersGoal
         TEMPLATE;
     }
 
-    private static function getFollowers()
+    private static function getSubscribers()
     {
         $credentials = new Credentials;
 
@@ -54,10 +54,10 @@ class FollowersGoal
         $jsonResponse = \GuzzleHttp\json_decode($response->getBody()->getContents(), false);
 
         $followersResponse = $httpClient->get(
-            'https://api.twitch.tv/helix/users/follows',
+            'https://api.twitch.tv/helix/subscriptions',
             [
                 RequestOptions::QUERY   => [
-                    'to_id' => $credentials->user_id,
+                    'broadcaster_id' => $credentials->user_id,
                 ],
                 RequestOptions::HEADERS => [
                     'Authorization' => 'Bearer ' . $jsonResponse->access_token,
